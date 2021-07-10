@@ -1,0 +1,24 @@
+{
+	"manifest_version": 2,
+	"name": "Sanctify",
+	"description": "Automatically re-direct away from blacklisted sites.",
+	"version": "1.0",
+	// "commands": {
+	// 	"open-sfw": {
+	// 		"suggested_key": {
+	// 			"default": "Ctrl+M",
+	// 			"mac": "Command+M"
+	// 		},
+	// 		"description": "Open SFW window"
+	// 	}
+	// },
+	"background": {
+		"scripts": ["script.js"],
+		"persistent": false
+	},
+	"browser_action": {
+		"default_icon": "assets/icon.png",
+		"default_popup": "popup/popup.html"
+	},
+	"permissions": ["activeTab", "tabs", "storage"]
+}

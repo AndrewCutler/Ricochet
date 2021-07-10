@@ -18,7 +18,7 @@
 	},
 	"browser_action": {
 		"default_icon": "assets/icon.png",
-		"default_popup": "popup/popup.html"
+		"default_popup": "popup.html"
 	},
 	"permissions": ["activeTab", "tabs", "storage"]
 }

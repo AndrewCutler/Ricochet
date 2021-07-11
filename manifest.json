@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"name": "Sanctify",
+	"name": "Ricochet",
 	"description": "Automatically re-direct away from blacklisted sites.",
 	"version": "1.0",
 	// "commands": {
@@ -17,7 +17,7 @@
 	},
 	"browser_action": {
 		"default_icon": "assets/icon.png",
-		"default_popup": "popup.html"
+		"default_popup": "popup/popup.html"
 	},
 	"permissions": ["activeTab", "tabs", "storage", "webNavigation"]
 }

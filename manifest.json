@@ -3,15 +3,6 @@
 	"name": "Ricochet",
 	"description": "Automatically re-direct away from blacklisted sites.",
 	"version": "1.0",
-	// "commands": {
-	// 	"open-sfw": {
-	// 		"suggested_key": {
-	// 			"default": "Ctrl+M",
-	// 			"mac": "Command+M"
-	// 		},
-	// 		"description": "Open SFW window"
-	// 	}
-	// },
 	"background": {
 		"scripts": ["script.js"]
 	},

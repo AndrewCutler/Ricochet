@@ -1,9 +1,19 @@
+// aliases
+const storage = chrome.storage.sync;
 const log = (...params) =>
 	chrome.extension.getBackgroundPage().console.log(...params);
 
+// HTML elements
 const siteListUl = document.getElementById("site-list");
-let blacklist;
+const addButton = document.getElementById("add-button");
+const clearButton = document.getElementById("clear-button");
+const siteInput = document.getElementById("site-input");
 
+// global variables
+let blacklist;
+const validUrlRegex = /^[^ "]+$/;
+
+// HTML helper functions
 const createLi = (url, index) => {
 	const liElement = document.createElement("li");
 	liElement.setAttribute("id", `site-${(index + 1).toString()}`);
@@ -12,18 +22,51 @@ const createLi = (url, index) => {
 	return liElement;
 };
 
+const appendLi = (url, index) => {
+	siteListUl.appendChild(createLi(url, index));
+};
+
 const populateList = (blacklist) => {
 	for (const [index, site] of blacklist.entries()) {
-		siteListUl.appendChild(createLi(site, index));
+		appendLi(site, index);
 	}
 };
 
-// set by key/value pair
-chrome.storage.sync.set({ google: "google.com" });
-chrome.storage.sync.set({ espn: "espn.com" });
+const validateInput = (input) => {
+	return validUrlRegex.test(input);
+};
 
-chrome.storage.sync.get(null, (result) => {
-	blacklist = [...Object.values(result)];
+addButton.onclick = () => {
+	const url = siteInput.value;
+	if (validateInput(url)) {
+		addSite(url);
+		if (!blacklist.contains(url)) {
+			appendLi(url, blacklist.length);
+		}
+		siteInput.value = "";
+	}
+};
+
+clearButton.onclick = () => {
+	storage.clear();
+	while (siteListUl.hasChildNodes()) {
+		siteListUl.removeChild(list.siteListUl);
+	}
+};
+
+// API helper functions
+// storage.clear();
+const addSite = (url) => {
+	storage.set({ [url]: url });
+};
+
+// set by key/value pair
+// addSite("google.com");
+// addSite("espn.com");
+
+storage.get(null, (result) => {
+	log(result);
+	blacklist = Object.values(result);
 
 	populateList(blacklist);
 });

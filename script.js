@@ -16,10 +16,11 @@ chrome.webNavigation.onBeforeNavigate.addListener((details) => {
 const checkBlacklist = (pendingSiteUrl) => {
 	for (const site of blacklist) {
 		if (pendingSiteUrl?.toLowerCase().includes(site)) {
-			console.log("\nSanctifying site:", site);
 			return true;
 		}
 
 		return false;
 	}
 };
+
+chrome.storage.sync.get((result) => console.log(result));
